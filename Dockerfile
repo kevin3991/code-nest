@@ -17,7 +17,7 @@ RUN pnpm install
 COPY . .
 
 # Copy the .env and .env.development files
-# COPY .env ./
+COPY .env ./
 
 # 暴露應用程序埠
 EXPOSE 3000
@@ -26,4 +26,4 @@ EXPOSE 3000
 # RUN pnpm run build
 
 # 運行應用程序
-# CMD ["pnpm", "run", "dev"]
+# CMD ["pnpm", "run", "start"]

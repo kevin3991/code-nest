@@ -1,37 +1,38 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    container_name: code-nest
-    restart: always
-    ports:
-      - '3000:3000'
-    environment:
-      DATABASE_HOST: db
-      DATABASE_PORT: 5432
-      DATABASE_USER: root
-      DATABASE_PASSWORD: nestpassword
-      DATABASE_NAME: code-nest
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    command: ['pnpm', 'run', 'start:dev']
-    depends_on:
-      - db
+  # app:
+  #   build: .
+  #   container_name: code-nest
+  #   restart: always
+  #   ports:
+  #     - '3000:3000'
+  #   environment:
+  #     DATABASE_HOST: ${DATABASE_HOST}
+  #     DATABASE_PORT: ${DATABASE_PORT}
+  #     DATABASE_USER: ${DATABASE_USER}
+  #     DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+  #     DATABASE_NAME: ${DATABASE_NAME}
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   command: ['pnpm', 'run', 'start:dev']
+  #   depends_on:
+  #     - db
 
   db:
-    image: postgres:14
-    container_name: nestjs-db
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: nestpassword
-      POSTGRES_DB: code-nest
+    image: mysql:8.0
+    container_name: nest-db
+    restart: unless-stopped
     ports:
-      - '5432:5432'
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./dbdata/test:/var/lib/mysql
 
 volumes:
-  postgres-data:
+  mysql-data:

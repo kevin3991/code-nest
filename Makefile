@@ -1,5 +1,7 @@
 d-lint:
-	docker compose run --rm app pnpm run lint
+	docker compose run --rm app pnpm run lint & pnpm run format
+d-install:
+	docker compose run --rm app pnpm install
 d-build:
 	docker compose build
 d-up:
