@@ -31,3 +31,7 @@ pnpm g:jwt-secret
 make d-build
 make d-up
 ```
+
+### Url
+
+http://localhost:8000/
