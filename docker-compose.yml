@@ -28,8 +28,8 @@ services:
       - '3307:3306'
     environment:
       MYSQL_ROOT_PASSWORD:
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USER: ${DATABASE_USER}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_PASSWORD:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
       - ./dbdata/test:/var/lib/mysql
